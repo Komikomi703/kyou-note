@@ -1,23 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
   <title id="title">今日ノート アプリアイコン</title>
-  <desc id="desc">空色の背景に白いノートと青いチェックマーク</desc>
+  <desc id="desc">澄んだ空色の背景に、白いノートと大きな青いチェックマーク</desc>
   <defs>
-    <linearGradient id="sky" x1="68" y1="40" x2="442" y2="474" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#9FD6F5"/>
-      <stop offset="1" stop-color="#4D94CE"/>
+    <linearGradient id="sky" x1="58" y1="32" x2="456" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BDEAFF"/>
+      <stop offset=".48" stop-color="#78C3EC"/>
+      <stop offset="1" stop-color="#3788C3"/>
     </linearGradient>
-    <filter id="shadow" x="72" y="56" width="368" height="408" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="0" dy="14" stdDeviation="13" flood-color="#1B527C" flood-opacity=".22"/>
+    <radialGradient id="light" cx="0" cy="0" r="1" gradientTransform="translate(105 75) rotate(48) scale(340)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="check" x1="194" y1="236" x2="350" y2="365" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2E91D0"/>
+      <stop offset="1" stop-color="#125684"/>
+    </linearGradient>
+    <filter id="shadow" x="62" y="48" width="390" height="430" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#164E75" flood-opacity=".20"/>
     </filter>
   </defs>
+
   <rect width="512" height="512" fill="url(#sky)"/>
-  <circle cx="92" cy="78" r="112" fill="#FFFFFF" opacity=".12"/>
-  <circle cx="455" cy="460" r="142" fill="#2D78B5" opacity=".12"/>
+  <rect width="512" height="512" fill="url(#light)"/>
+  <circle cx="472" cy="450" r="126" fill="#17689F" opacity=".08"/>
+
   <g filter="url(#shadow)">
-    <rect x="120" y="90" width="272" height="332" rx="44" fill="#FFFFFF"/>
-    <rect x="120" y="90" width="272" height="54" rx="44" fill="#E9F6FD"/>
-    <path d="M169 202H321M169 258H294M169 314H266" fill="none" stroke="#75AED7" stroke-width="22" stroke-linecap="round"/>
-    <circle cx="337" cy="350" r="65" fill="#DDF1FC"/>
-    <path d="M305 349L328 372L373 318" fill="none" stroke="#2978B7" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="112" y="76" width="288" height="360" rx="58" fill="#FFFFFF"/>
+    <path d="M170 76H176V436H170C138 436 112 410 112 378V134C112 102 138 76 170 76Z" fill="#E8F7FE"/>
+    <path d="M176 76V436" stroke="#CAEAF9" stroke-width="5"/>
+
+    <path d="M95 157H137M95 220H137M95 283H137M95 346H137" stroke="#216B9D" stroke-width="18" stroke-linecap="round"/>
+
+    <path d="M214 169H330M214 222H292" stroke="#A7D5EC" stroke-width="20" stroke-linecap="round"/>
+
+    <path d="M199 302L251 354L349 238" fill="none" stroke="#FFFFFF" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M199 302L251 354L349 238" fill="none" stroke="url(#check)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 </svg>

@@ -13,6 +13,7 @@
     "test:security": "vitest run src/security/rules.test.ts",
     "test:watch": "vitest",
     "preview": "vite preview",
+    "deploy:cloudflare": "npm run build && npx --yes wrangler@latest deploy",
     "generate:icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {

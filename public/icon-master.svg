@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">今日ノート アプリアイコン</title>
+  <desc id="desc">空色の背景に白いノートと青いチェックマーク</desc>
+  <defs>
+    <linearGradient id="sky" x1="68" y1="40" x2="442" y2="474" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9FD6F5"/>
+      <stop offset="1" stop-color="#4D94CE"/>
+    </linearGradient>
+    <filter id="shadow" x="72" y="56" width="368" height="408" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="14" stdDeviation="13" flood-color="#1B527C" flood-opacity=".22"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" fill="url(#sky)"/>
+  <circle cx="92" cy="78" r="112" fill="#FFFFFF" opacity=".12"/>
+  <circle cx="455" cy="460" r="142" fill="#2D78B5" opacity=".12"/>
+  <g filter="url(#shadow)">
+    <rect x="120" y="90" width="272" height="332" rx="44" fill="#FFFFFF"/>
+    <rect x="120" y="90" width="272" height="54" rx="44" fill="#E9F6FD"/>
+    <path d="M169 202H321M169 258H294M169 314H266" fill="none" stroke="#75AED7" stroke-width="22" stroke-linecap="round"/>
+    <circle cx="337" cy="350" r="65" fill="#DDF1FC"/>
+    <path d="M305 349L328 372L373 318" fill="none" stroke="#2978B7" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

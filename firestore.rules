@@ -1,0 +1,83 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function owns(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    function validState(state, userId) {
+      return state is map
+        && state.version is int
+        && state.version >= 1
+        && state.currentUser is map
+        && state.currentUser.id == userId
+        && state.currentUser.displayName is string
+        && state.currentUser.displayName.size() > 0
+        && state.currentUser.displayName.size() <= 40
+        && state.currentUser.provider in ['password', 'google']
+        && state.settings is map
+        && state.settings.displayName is string
+        && state.settings.displayName.size() > 0
+        && state.settings.displayName.size() <= 40
+        && state.settings.theme in ['light', 'dark', 'system']
+        && state.settings.weekStartsOn in [0, 1]
+        && state.settings.pointsEnabled is bool
+        && state.settings.notificationsEnabled is bool
+        && state.settings.inAppReminders is bool
+        && state.tasks is list
+        && state.tasks.size() <= 5000
+        && state.categories is list
+        && state.categories.size() <= 200
+        && state.habits is list
+        && state.habits.size() <= 500
+        && state.habitRecords is list
+        && state.habitRecords.size() <= 20000
+        && state.goals is list
+        && state.goals.size() <= 2000
+        && state.goalMilestones is list
+        && state.goalMilestones.size() <= 10000
+        && state.dailyStatistics is list
+        && state.dailyStatistics.size() <= 5000
+        && state.reflections is list
+        && state.reflections.size() <= 5000
+        && state.attachments is list
+        && state.attachments.size() <= 2000
+        && state.rewards is list
+        && state.rewards.size() <= 1000
+        && state.pointLedger is list
+        && state.pointLedger.size() <= 30000
+        && state.tombstones is list
+        && state.tombstones.size() <= 20000
+        && state.migrationHistory is list
+        && state.migrationHistory.size() <= 1000
+        && state.dailyGoals is map
+        && state.googleEvents is list
+        && state.googleEvents.size() <= 2000;
+    }
+
+    match /users/{userId}/appData/state {
+      allow read, delete: if owns(userId);
+      allow create, update: if owns(userId)
+        && request.resource.data.keys().hasOnly(['state', 'updatedAt'])
+        && request.resource.data.updatedAt is timestamp
+        && validState(request.resource.data.state, userId);
+    }
+
+    match /users/{userId}/devices/{deviceId} {
+      allow read, delete: if owns(userId);
+      allow create, update: if owns(userId)
+        && request.resource.data.keys().hasOnly(['token', 'updatedAt', 'userAgent'])
+        && request.resource.data.token is string
+        && request.resource.data.token == deviceId
+        && request.resource.data.token.size() <= 4096
+        && request.resource.data.userAgent is string
+        && request.resource.data.userAgent.size() <= 1024
+        && request.resource.data.updatedAt is timestamp;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
